@@ -11,6 +11,7 @@ app.get('/', (req, res) => {
 // get authentication for spotify user
 // app.get('/user-authentication', (req, res) => {});
 // create playlist 
+// if there is an error for user authentication, rerun auth and get token
 // app.post('/create-playlist', (req, res) => {});
 // find playlist
 // app.get('/find-playlist', (req, res) => {});
