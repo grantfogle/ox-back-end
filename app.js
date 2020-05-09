@@ -8,6 +8,11 @@ app.get('/', (req, res) => {
     res.send('it worked duuuuuuude');
 });
 
+
+// get authentication for spotify user
+
+// 
+
 app.listen(port, () => {
     console.log(`listening on ${port}`);
 });
