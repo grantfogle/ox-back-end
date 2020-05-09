@@ -1,0 +1,11 @@
+{
+  "name": "ox-back-end",
+  "version": "1.0.0",
+  "description": "server for ox",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Grant Fogle",
+  "license": "ISC"
+}
