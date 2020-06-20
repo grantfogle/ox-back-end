@@ -8,20 +8,9 @@ app.get('/', (req, res) => {
     res.send('it worked duuuuuuude');
 });
 
-// get authentication for spotify user
-// app.get('/user-authentication', (req, res) => {});
-// create playlist 
-// if there is an error for user authentication, rerun auth and get token
-// app.post('/create-playlist', (req, res) => {});
-// find playlist
-// app.get('/find-playlist', (req, res) => {});
-// search songs
-// app.get('/search-songs', (req, res) => {});
-// add song to playlist
-// app.post('/add-song-to-playlist', (req, res) => {});
-// remove song from playlist
-// app.delete('/remove-song-from-playlist', (req, res) => {});
-
+// get playlist by name
+// playlist should have name, id
+// status live?
 
 app.listen(port, () => {
     console.log(`listening on ${port}`);
