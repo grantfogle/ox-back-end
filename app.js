@@ -2,14 +2,21 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const port = process.env.PORT || 8000;
 const queries = require('./queries');
+const port = process.env.PORT || 8000;
 
 app.use(express.static('public'));
 app.use(cors());
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+});
+
+
+app.get('/', cors(), (req, res) => {
+    console.log('hit')
     queries.listAll().then(playlists => res.send(playlists));
 });
 
