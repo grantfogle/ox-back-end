@@ -16,9 +16,7 @@ app.use(bodyParser.json());
 
 
 app.get('/', (req, res) => {
-    console.log('hit');
     // get the name of the playlist
-    console.log(req.body);
     // return
     queries.listAll().then(playlists => res.send(playlists));
 });
