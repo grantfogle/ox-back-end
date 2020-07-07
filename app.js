@@ -6,8 +6,14 @@ const queries = require('./queries');
 const port = process.env.PORT || 8000;
 
 app.use(express.static('public'));
+// app.use(bodyParser.json());
 app.use(cors());
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }))
+
+app.listen(port, () => {
+    console.log(`listening on ${port}`);
+});
 
 // app.use((req, res, next) => {
 //     res.header('Access-Control-Allow-Origin', '*');
@@ -21,9 +27,13 @@ app.get('/', (req, res) => {
     queries.listAll().then(playlists => res.send(playlists));
 });
 
-app.get('/playlist', (req, res) => {
+app.get('/playlist/:name', (req, res) => {
     // playlist name
-    const { playlistName } = req.body;
+    console.log('hit');
+    console.log(req.params.name);
+    const playlistName = req.params.name;
+    // const { playlistName } = req.body;
+    console.log(playlistName);
     queries.getPlaylistByName(playlistName).then(playlist => res.send(playlist));
 
 })
@@ -59,7 +69,3 @@ app.get('/playlist', (req, res) => {
 // get playlist by name
 // playlist should have name, id
 // status live?
-
-app.listen(port, () => {
-    console.log(`listening on ${port}`);
-});
