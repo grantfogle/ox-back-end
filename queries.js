@@ -4,7 +4,7 @@ module.exports = {
     listAll() {
         return db('playlists');
     },
-    getPlaylistByName(id) {
-        return db('playlists').where('id')
+    getPlaylistByName(playlistName) {
+        return db('playlists').where('playlistName', playlistName);
     }
 }

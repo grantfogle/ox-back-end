@@ -21,6 +21,13 @@ app.get('/', (req, res) => {
     queries.listAll().then(playlists => res.send(playlists));
 });
 
+app.get('/playlist', (req, res) => {
+    // playlist name
+    const { playlistName } = req.body;
+    queries.getPlaylistByName(playlistName).then(playlist => res.send(playlist));
+
+})
+
 // app.get('/find-playlist', (req, res) => {
 //     const { playlistName, password } = req.body;
 //     return queries.getPlaylistByName(playlistName)
