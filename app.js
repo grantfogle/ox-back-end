@@ -17,8 +17,6 @@ app.use(express.urlencoded({
 // });
 
 app.get('/', (req, res) => {
-    // get the name of the playlist
-    // return
     queries.listAll().then(playlists => res.send(playlists));
 });
 
@@ -29,36 +27,26 @@ app.post('/find-playlist', (req, res) => {
     } else {
         res.send('there was a problem with your request');
     }
-})
+});
 
-// app.get('/find-playlist', (req, res) => {
-//     const { playlistName, password } = req.body;
-//     return queries.getPlaylistByName(playlistName)
-//         .then(playlist => {
-//             // error handling
-//             if (playlist.length === 0) {
-//                 return res.send('Playlist not found, password was incorrect');
-//             }
-//             // handle wrong password
-//             return res.send(playlistId);
-//         })
-// })
+app.post('/create-playlist', (req, res) => {
+    const newPlaylist = req.body;
 
-// app.post('/create-playlist', (req, res) => {
-//     const { playlistName, password, spotifyId } = req.body;
-//     return queries.getPlaylistByName(playlistName).then(playlist => {
-//         if (playlist.length > 0) {
-//             return res.send('User already exists');
-//         } else {
-//             let newPlaylist = {
-//                 playlistName,
-//                 password: hash,
-//                 spotifyId
-//             }
-//             return queries.createPlaylist(newPlaylist).then(response)
-//         }
-//     })
-// })
+    queries.getPlaylistByName(newPlaylist.playlistName).then(playlistStatus => {
+        isNameADuplicate = false;
+        if (playlistStatus.length >= 1) {
+            isNameADuplicate = true;
+            return res.send('That playlist name already exists, choose another');
+        }
+
+        if (newPlaylist && !isNameADuplicate) {
+            return queries.createPlaylist(newPlaylist).then(newPlaylistStatus => res.sendStatus(204));
+        } else {
+            return res.send('There was an issue with your request');
+        }
+    });
+});
+
 // get playlist by name
 // playlist should have name, id
 // status live?
