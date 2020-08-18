@@ -5,9 +5,9 @@ exports.seed = function (knex) {
     .then(function () {
       // Inserts seed entries
       return knex('playlists').insert([
-        { playlistName: 'firstplaylist', password: 'password', spotifyId: '4kcjIFRliZWc7bGe597Dmj', },
-        { playlistName: '2playlist', password: 'password', spotifyId: '4kcjIFRliZWc7bGe597Dmj', },
-        { playlistName: '3me', password: 'password', spotifyId: '4kcjIFRliZWc7bGe597Dmj', }
+        { playlistName: 'firstplaylist', spotifyPlaylistId: '4kcjIFRliZWc7bGe597Dmj', spotifyUserId: '125956319' },
+        { playlistName: '2playlist', spotifyPlaylistId: '4kcjIFRliZWc7bGe597Dmj', spotifyUserId: '125956319' },
+        { playlistName: '3me', spotifyPlaylistId: '4kcjIFRliZWc7bGe597Dmj', spotifyUserId: '125956319' }
       ]);
     });
 };

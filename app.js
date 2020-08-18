@@ -11,17 +11,14 @@ app.use(express.urlencoded({
     extended: true
 }))
 
-// app.use((req, res, next) => {
-//     res.header('Access-Control-Allow-Origin', '*');
-//     next();
-// });
-
 app.get('/', (req, res) => {
     queries.listAll().then(playlists => res.send(playlists));
 });
 
 app.post('/find-playlist', (req, res) => {
     const { playlistName } = req.body;
+    console.log('cats');
+    // send response if playlist doesn't exist
     if (playlistName) {
         queries.getPlaylistByName(playlistName).then(playlist => res.send(playlist));
     } else {
