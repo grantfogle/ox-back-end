@@ -9,5 +9,8 @@ module.exports = {
     },
     createPlaylist(newPlaylist) {
         return db('playlists').insert(newPlaylist).returning('*');
+    },
+    deletePlaylist(playlistName) {
+        return db('playlists').where('playlistName', playlistName).delete();
     }
 }

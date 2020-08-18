@@ -48,6 +48,10 @@ app.post('/playlist/new', (req, res) => {
     });
 });
 
+app.delete('/playlists/:playlistName/delete', (req, res) => {
+    const { playlistName } = req.params;
+    queries.deletePlaylist(playlistName).then(res.sendStatus(204));
+});
 // get playlist by name
 // playlist should have name, id
 // status live?
