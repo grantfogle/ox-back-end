@@ -15,9 +15,13 @@ app.get('/', (req, res) => {
     queries.listAll().then(playlists => res.send(playlists));
 });
 
-app.post('/find-playlist', (req, res) => {
+app.get('/playlist/:playlistName', (req, res) => {
+    const { playlistName } = req.params;
+    queries.getPlaylistByName(playlistName).then(playlist => res.send(playlist));
+});
+
+app.post('/playlist', (req, res) => {
     const { playlistName } = req.body;
-    console.log('cats');
     // send response if playlist doesn't exist
     if (playlistName) {
         queries.getPlaylistByName(playlistName).then(playlist => res.send(playlist));
@@ -26,7 +30,7 @@ app.post('/find-playlist', (req, res) => {
     }
 });
 
-app.post('/create-playlist', (req, res) => {
+app.post('/playlist/new', (req, res) => {
     const newPlaylist = req.body;
 
     queries.getPlaylistByName(newPlaylist.playlistName).then(playlistStatus => {
